@@ -12,12 +12,12 @@ class HomeController extends Controller
     public function show(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products";
         $products = json_decode(file_get_contents($url));
-
+        //
         // if(isset($request->id)){
         //     $params = ['id' => $request->id];
-        //     $items = DB::select('select * from products where id = :id', $params);
+        //     $products = DB::select('select * from products where id = :id', $params);
         // }else{
-        //     $items = DB::select('select * from products');
+        //     $products = DB::select('select * from products');
         // }
         return view('home.show', ['products' => $products]);
     }

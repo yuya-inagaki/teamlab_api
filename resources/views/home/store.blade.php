@@ -6,7 +6,7 @@
 
 @section('content')
 <table>
-    <form method="POST" action="https://app.y-canvas.com/teamlab_api/api/products" enctype="multipart/form-data">
+    <form method="POST" action="/api/products" enctype="multipart/form-data">
         {{ csrf_field() }}
         <tr>
             <th>商品名</th>

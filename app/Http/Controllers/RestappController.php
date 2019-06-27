@@ -48,7 +48,7 @@ class RestappController extends Controller
 
         $nextId = $product->id;
         $filename = $nextId . '.jpg';
-        $filepath = 'storage/product_images/'. $filename;
+        $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
         $request->image->storeAs('public/product_images', $filename);
         $product->image = $filepath;
         $product->save();
