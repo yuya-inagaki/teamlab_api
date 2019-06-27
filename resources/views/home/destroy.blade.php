@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>削除：{{$id}}</h1>
-<form method="post" action="/api/products/{{$id}}">
+<form method="post" action="https://app.y-canvas.com/teamlab_api/api/products/{{$id}}">
     {{ csrf_field() }}
     <p>商品ID</p>
     <input name="_method" type="hidden" value="DELETE">
