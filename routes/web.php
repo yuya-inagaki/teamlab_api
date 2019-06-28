@@ -19,6 +19,7 @@ Route::get('products/store', function () {
     return view('home.store');
 });
 Route::get('products/destroy/{id?}','HomeController@destroy');
+Route::post('products', 'HomeController@create');
 Route::get('products/{id?}', 'HomeController@show');
 
 
