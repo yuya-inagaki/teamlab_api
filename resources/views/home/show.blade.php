@@ -8,12 +8,17 @@
 <div class="row">
 @foreach ($products as $product)
 <div class="col-md-4">
-    <img src="{{$product->image}}" width="100%">
-    <p>id: {{$product->id}}</p>
-    <p>name: {{$product->name}}</p>
-    <p>description: {{$product->description}}</p>
-    <p>price: {{$product->price}} 円</p>
-    <a href="{{ url('/products/destroy') }}/{{ $product->id }}">削除</a>
+    <div class="product-inner">
+        <div class="image" style="background:url('{{$product->image}}') center / cover;"></div>
+        <div class="info">
+            <p>id: {{$product->id}}</p>
+            <p>name: {{$product->name}}</p>
+            <p>description: {{$product->description}}</p>
+            <p>price: {{$product->price}} 円</p>
+            <a href="{{ url('/products/destroy') }}/{{ $product->id }}">削除</a>
+        </div>
+    </div>
+
 </div>
 @endforeach
 </div>
