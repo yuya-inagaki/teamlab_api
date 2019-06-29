@@ -178,15 +178,10 @@ class HomeController extends Controller
 
     }
 
-    // //データベースの登録
-    // public function database_register(Request $request){
-    //     $params = [
-    //         'name' => $request->name,
-    //         'description' => $request->description,
-    //         'price' => $request->price,
-    //     ];
-    //     DB::insert('insert into products (name, description, price) values (:name, :description, :price)', $params);
-    //     return redirect('/home/database');
-    // }
+    public function edit(Request $request){
+        $url = "https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
+        $product = json_decode(file_get_contents($url));
+        return view('home.edit', ['product' => $product]);
+    }
 
 }
