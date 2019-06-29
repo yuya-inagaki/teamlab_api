@@ -118,7 +118,7 @@ class HomeController extends Controller
         $CNL = "\r\n";//改行を変数化
 
         //POST送信先URL
-        $sendUrl = 'https://app.y-canvas.com/teamlab_api/api/products';
+        $url = 'https://app.y-canvas.com/teamlab_api/api/products';
 
         //テキストデータを記述
         $arrPost = array(
@@ -129,8 +129,6 @@ class HomeController extends Controller
 
         //画像ファイルパスを記述
         $filePath = $_FILES['image']['tmp_name'];
-
-
 
         $arrContent = [];
 
@@ -154,7 +152,7 @@ class HomeController extends Controller
             $key = 'image';
             $arrContent[] = 'Content-Disposition: form-data; name="'.$key.'"; filename="'.basename($filePath).'"';
             $arrContent[] = 'Content-Type: image/jpeg';
-            $arrContent[] = $CNL.$imageFile;//画像ファイルデータを挿入
+            $arrContent[] = $CNL.$imageFile; //画像ファイルデータを挿入
             $arrContent[] = '--'.$boundary;
         }
 
@@ -174,7 +172,7 @@ class HomeController extends Controller
             )
         ));
 
-        $contents = file_get_contents($sendUrl, false, $context);
+        $contents = file_get_contents($url, false, $context);
 
         return redirect('/products');
 

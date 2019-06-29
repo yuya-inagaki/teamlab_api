@@ -9,10 +9,11 @@
 @foreach ($products as $product)
 <div class="col-md-4">
     <div class="product-inner">
-        <div class="image" style="background:url('{{$product->image}}') center / cover;"></div>
+        <div class="image relative" style="background:linear-gradient(190deg, rgba(0, 0, 0, 0.00) 60%, rgba(0, 0, 0, 0.59) 100%),url('{{$product->image}}') center / cover;">
+            <span class="name p-bottom-l-10">{{$product->name}}</span>
+        </div>
         <div class="info">
             <p>id: {{$product->id}}</p>
-            <p>name: {{$product->name}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
             <a href="{{ url('/products/destroy') }}/{{ $product->id }}">削除</a>
