@@ -51,30 +51,132 @@ class HomeController extends Controller
 
     //データベースの登録
     public function create(Request $request){
-        $url ="https://app.y-canvas.com/teamlab_api/api/products";
+        // $url = "https://app.y-canvas.com/teamlab_api/api/products/";
+        // $data = array(
+        //     'name' => $request->name,
+        //     'description' => $request->description,
+        //     'price' => $request->price,
+        //     // 'image' => new \CURLFile($_FILES["image"]["tmp_name"],'image/jpeg','test_name')
+        // );
+        //
+        // $header = [
+        //     'Content-Type: application/json',
+        // ];
+        //
+        // $curl = curl_init($url);
+        // $options = [
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_POSTFIELDS => json_encode($data), // jsonデータを送信
+        //     CURLOPT_HTTPHEADER => $header, // リクエストにヘッダーを含める
+        //     CURLOPT_SSL_VERIFYPEER => false,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_RETURNTRANSFER => true,
+        // ];
+        // // dd($options);
+        //
+        // curl_setopt_array($curl, $options);
+        // $response = curl_exec($curl);
+        // // dd($response);
+        // curl_close($curl);
+        // return redirect('/products');
 
-        $image = new CURLFile($request->$image,'image/jpeg','test_name');
 
-        $params = array(
+        // $url = "https://app.y-canvas.com/teamlab_api/api/products";
+        //
+        // // 画像に関する処理
+        // $filePath = $_FILES['image']['tmp_name'];
+        // $fileName = basename($filePath);
+        // $file = file_get_contents($filePath); //ファイルの内容の取得
+        //
+        // $data = array(
+        //     'name' => $request->name,
+        //     'description' => $request->description,
+        //     'price' => $request->price,
+        //     'image' => array(
+        //         'file_name' => $fileName,
+        //         'Content-Type' => 'image/jpeg',
+        //         $file
+        //     )
+        // );
+        // // HTTPヘッダの内容(※ここがかなり重要っぽい)
+        // $header = array(
+        //     'Content-Type: application/x-www-form-urlencoded',
+        // );
+        // $content = http_build_query($data);
+        // $options = array(
+        //     'http' => array(
+        //         'method' => 'POST',
+        //         'header' => implode("\r\n", $header),
+        //         'content' => $content
+        //     )
+        // );
+        // // dd($options);
+        // $contents = file_get_contents($url, false, stream_context_create($options));
+        // return $contents;
+
+
+        $CNL = "\r\n";//改行を変数化
+
+        //POST送信先URL
+        $sendUrl = 'https://app.y-canvas.com/teamlab_api/api/products';
+
+        //テキストデータを記述
+        $arrPost = array(
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $image
         );
 
-        $options = [
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $params,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_RETURNTRANSFER => true,
-        ];
+        //画像ファイルパスを記述
+        $filePath = $_FILES['image']['tmp_name'];
 
-        $curl = curl_init($url);
-        curl_setopt_array($curl, $options);
-        $response = curl_exec($curl);
-        dd($response);
-        curl_close($curl);
 
+
+        $arrContent = [];
+
+        $boundary = "----1234567890";
+
+        //ペイロード作成
+        $arrContent[] = $CNL.'--'.$boundary;//開始
+
+        if(count($arrPost) > 0){
+            foreach($arrPost as $key => $val) {
+                $arrContent[] = 'Content-Disposition: form-data; name="'.$key.'"'.$CNL;
+                $arrContent[] = $val;
+                $arrContent[] = '--'.$boundary;
+            }
+        }
+
+        if(file_exists($filePath)){
+
+            $imageFile = file_get_contents($filePath); //ファイルの内容の取得
+
+            $key = 'image';
+            $arrContent[] = 'Content-Disposition: form-data; name="'.$key.'"; filename="'.basename($filePath).'"';
+            $arrContent[] = 'Content-Type: image/jpeg';
+            $arrContent[] = $CNL.$imageFile;//画像ファイルデータを挿入
+            $arrContent[] = '--'.$boundary;
+        }
+
+        $content = join($CNL, $arrContent);
+        $content .= '--'.$CNL;//終端
+
+        $header = join($CNL,array(
+            "Content-Type: multipart/form-data; boundary=".$boundary,
+            "Content-Length: ".strlen($content)
+        ));
+
+        $context = stream_context_create(array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => $header,
+                'content' => $content
+            )
+        ));
+
+        $contents = file_get_contents($sendUrl, false, $context);
+
+        return redirect('/products');
 
     }
 
