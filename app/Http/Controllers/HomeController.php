@@ -36,7 +36,7 @@ class HomeController extends Controller
         curl_setopt_array($curl, $options);
         $response = curl_exec($curl);
         curl_close($curl);
-        echo $response;
+        return redirect('/products');
 
 
 
@@ -52,26 +52,30 @@ class HomeController extends Controller
     //データベースの登録
     public function create(Request $request){
         $url ="https://app.y-canvas.com/teamlab_api/api/products";
-        $data = array(
+
+        $image = new CURLFile($request->$image,'image/jpeg','test_name');
+
+        $params = array(
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $request->image
+            'image' => $image
         );
-        // HTTPヘッダの内容(※ここがかなり重要っぽい)
-        $header = array(
-            "Content-Type: application/x-www-form-urlencoded"
-        );
-        $content = http_build_query($data);
-        $options = array(
-            'http' => array(
-                'method' => 'POST',
-                'header' => implode("\r\n", $header),
-                'content' => $content
-            )
-        );
-        $contents = file_get_contents($url, false, stream_context_create($options));
-        return $contents;
+
+        $options = [
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, $options);
+        $response = curl_exec($curl);
+        dd($response);
+        curl_close($curl);
+
+
     }
 
     // //データベースの登録

@@ -4,7 +4,7 @@
 
 @section('content')
 <a href="{{ url('/products/store') }}">登録</a>
-<a href="{{ url('/products/destroy') }}">削除</a>
+<!-- <a href="{{ url('/products/destroy') }}">削除</a> -->
 <div class="row">
 @foreach ($products as $product)
 <div class="col-md-4">
