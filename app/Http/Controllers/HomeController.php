@@ -25,20 +25,21 @@ class HomeController extends Controller
     //データベースの削除
     public function destroy(Request $request){
         $url ="https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
-        $products = json_decode(file_get_contents($url));
-        dd($products);
-        $header = array(
-            'Content-Type: application/x-www-form-urlencoded',
-        );
-        $options = array(
-            'http' => array(
-                'method' => 'get',
-                'header' => implode("\n", $header), // リクエストヘッダを改行コード区切りで設定
-                'ignore_errors' => true, // これ入れないと400・500番台のHTTPステータスコードが帰ってきた場合にwarning吐く
-            )
-        );
-        $contents = file_get_contents($url, false, stream_context_create($options));
-        return var_dump($contents);
+
+        $options = [
+            CURLOPT_CUSTOMREQUEST => 'DELETE',
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, $options);
+        $response = curl_exec($curl);
+        curl_close($curl);
+        echo $response;
+
+
+
         // if(isset($request->id)){
         //     $params = ['id' => $request->id];
         //     return view('home.destroy', $params);
@@ -63,7 +64,7 @@ class HomeController extends Controller
         );
         $content = http_build_query($data);
         $options = array(
-            'http' => array(
+            'https' => array(
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
                 'content' => $content
