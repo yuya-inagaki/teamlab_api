@@ -38,22 +38,21 @@ class RestappController extends Controller
      */
     public function store(Request $request) //登録
     {
-        return "testだよ";
-        // $filepath = 'null';
-        // $product = new Product();
-        // $product->name = $request->name;
-        // $product->description = $request->description;
-        // $product->price = $request->price;
-        // $product->image = $filepath;
-        // $product->save();
-        //
-        // $nextId = $product->id;
-        // $filename = $nextId . '.jpg';
-        // $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
-        // $request->image->storeAs('public/product_images', $filename);
-        // $product->image = $filepath;
-        // $product->save();
-        // return $product->toArray();
+        $filepath = 'null';
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->image = $filepath;
+        $product->save();
+
+        $nextId = $product->id;
+        $filename = $nextId . '.jpg';
+        $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
+        $request->image->storeAs('public/product_images', $filename);
+        $product->image = $filepath;
+        $product->save();
+        return $product->toArray();
     }
 
     /**
