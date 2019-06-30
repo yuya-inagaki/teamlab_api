@@ -15,12 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('products/store', function () {
-    return view('home.store');
+Route::get('products/create', function () {
+    return view('home.create');
 });
 Route::get('products/destroy/{id?}','HomeController@destroy');
 Route::get('products/edit/{id?}','HomeController@edit');
-Route::post('products', 'HomeController@create');
+Route::post('products', 'HomeController@store');
+Route::put('products/update/{id?}', 'HomeController@update');
 Route::get('products/{id?}', 'HomeController@show');
 
 

@@ -3,7 +3,7 @@
 @section('title', 'データベースの表示テスト')
 
 @section('content')
-<a href="{{ url('/products/store') }}">登録</a>
+<a href="{{ url('/products/create') }}">登録</a>
 <!-- <a href="{{ url('/products/destroy') }}">削除</a> -->
 <div class="row">
 @foreach ($products as $product)

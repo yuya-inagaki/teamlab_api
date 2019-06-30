@@ -96,7 +96,25 @@ class RestappController extends Controller
      */
     public function update(Request $request, $id) //変更
     {
-        return 'Updateについて記述';
+        if($product = Product::find($id)){
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $filename = $id . '.jpg';
+            $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
+            $request->image->storeAs('public/product_images', $filename);
+            $product->image = $filepath;
+            $product->save();
+            return $product->toArray();
+        }else{
+            $errors = [
+                'function' => 'delete',
+                'message' => 'no data',
+                'id' => $id
+            ];
+            $json =['error' =>$errors];
+            return $json;
+        }
     }
 
     /**
