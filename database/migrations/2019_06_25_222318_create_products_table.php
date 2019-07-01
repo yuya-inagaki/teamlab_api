@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description', 500);
             $table->integer('price');
             $table->string('image');
+            $table->integer('update')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
