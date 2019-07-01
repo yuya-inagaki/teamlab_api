@@ -38,7 +38,6 @@ class RestappController extends Controller
      */
     public function store(Request $request) //登録
     {
-        // dd($request);
         $filepath = 'null';
         $product = new Product();
         $product->name = $request->name;
@@ -97,7 +96,6 @@ class RestappController extends Controller
      */
     public function update(Request $request, $id) //変更
     {
-        return($request->name);
         if($product = Product::find($id)){
             $filename = $id . '.jpg';
             Storage::disk('local')->delete('public/product_images/'.$filename);
