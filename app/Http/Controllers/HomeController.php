@@ -46,7 +46,6 @@ class HomeController extends Controller
             'description' => 'required|max:500', //最大500文字
             'price' => 'required|digits_between:1,10', //1から10桁までの数字
             'image' => 'required|image|max:3000', //3000kb(3MB)以下のファイル
-            '_method' => 'PUT', //PUT
         ]);
 
         $CNL = "\r\n";//改行を変数化
@@ -59,6 +58,7 @@ class HomeController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            '_method' => 'PUT', //PUT
         );
 
         //画像ファイルパスを記述
@@ -107,7 +107,6 @@ class HomeController extends Controller
         ));
 
         $contents = file_get_contents($url, false, $context);
-        dd($contents);
 
         return redirect('/products');
 
