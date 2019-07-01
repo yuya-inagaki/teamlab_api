@@ -23,7 +23,7 @@
         @if($errors->has('price'))
         <span class="error">{{ $errors->first('price') }}</span>
         @endif
-        <input type="text" name="price" placeholder="価格" value="{{ old('price') }}">
+        <input type="number" name="price" placeholder="100" value="{{ old('price') }}">
         <p>画像</p>
         @if($errors->has('image'))
         <span class="error">{{ $errors->first('image') }}</span>

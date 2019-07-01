@@ -16,8 +16,8 @@
             <p>id: {{$product->id}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
-            <a href="{{ url('/products/destroy') }}/{{ $product->id }}">削除</a>
-            <a href="{{ url('/products/edit') }}/{{ $product->id }}">編集</a>
+            <a class="manage" href="{{ url('/products/destroy') }}/{{ $product->id }}"><i class="far fa-trash-alt"></i> 削除</a>
+            <a class="manage" href="{{ url('/products/edit') }}/{{ $product->id }}"><i class="far fa-edit"></i> 編集</a>
         </div>
     </div>
 
