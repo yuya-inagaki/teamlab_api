@@ -106,10 +106,10 @@ class HomeController extends Controller
         ));
 
         $contents = file_get_contents($url, false, $context);
-
-        // dd($contents);
+        dd($contents);
 
         return redirect('/products');
+
 
     }
 

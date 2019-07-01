@@ -21,7 +21,7 @@ Route::get('products/create', function () {
 Route::get('products/destroy/{id?}','HomeController@destroy');
 Route::get('products/edit/{id?}','HomeController@edit');
 Route::post('products', 'HomeController@store');
-Route::put('products/update/{id?}', 'HomeController@update');
+Route::post('products/update/{id?}', 'HomeController@update');
 Route::get('products/{id?}', 'HomeController@show');
 
 

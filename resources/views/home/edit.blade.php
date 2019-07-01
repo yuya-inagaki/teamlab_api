@@ -34,7 +34,7 @@
             <th>画像</th>
             <td><img src="{{ $product->image }}" width="100px"><input type="file" name="image"></td>
         </tr>
-        <input type="hidden" name="_method" value="PUT"> <!-- この1行を追加！ -->
+        <!-- <input type="hidden" name="_method" value="PUT">-->
         <tr>
             <th></th>
             <td><input type="submit" value="送信"></td>
