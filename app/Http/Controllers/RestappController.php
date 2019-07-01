@@ -47,7 +47,7 @@ class RestappController extends Controller
         $product->save();
 
         $nextId = $product->id;
-        $filename = $nextId . '.jpg';
+        $filename = $nextId . '_0.jpg';
         $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
         $request->image->storeAs('public/product_images', $filename);
         $product->image = $filepath;
@@ -97,11 +97,13 @@ class RestappController extends Controller
     public function update(Request $request, $id) //変更
     {
         if($product = Product::find($id)){
-            $filename = $id . '.jpg';
+            $version = $product->update + 1;
+            $filename = $id . '_' . $version . '.jpg';
             Storage::disk('local')->delete('public/product_images/'.$filename);
             $product->name = $request->name;
             $product->description = $request->description;
             $product->price = $request->price;
+            $product->update = $version;
             $filepath = 'https://app.y-canvas.com/teamlab_api/storage/product_images/'. $filename;
             $request->image->storeAs('public/product_images', $filename);
             $product->image = $filepath;
