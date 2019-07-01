@@ -98,7 +98,6 @@ class RestappController extends Controller
     {
         if($product = Product::find($id)){
             $filename = $id . '.jpg';
-            Storage::disk('local')->delete('public/product_images/'.$filename);
             $product->name = $request->name;
             $product->description = $request->description;
             $product->price = $request->price;
