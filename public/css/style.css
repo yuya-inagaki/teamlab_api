@@ -7,6 +7,12 @@ header span{position:absolute; top:50%; left:50%; transform:translate(-50%, -50%
 .product-inner .info{padding:10px;}
 .product-inner .name{color:white; font-size:1.5em; font-weight:bold;}
 
+/* 登録・修正フォームCSS */
+.form{width:100%; max-width:600px; margin:20px auto;}
+.form input, .form textarea{width:100%; padding:10px 15px; margin:10px 0; border:2px solid black; border-radius:5px;}
+.form span.error{color:red; font-size:10px;}
+/* //登録・修正フォームCSS */
+
 
 /* オリジナルCSS */
 .relative{position:relative;}

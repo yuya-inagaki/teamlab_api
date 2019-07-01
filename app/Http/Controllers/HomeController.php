@@ -45,7 +45,7 @@ class HomeController extends Controller
             'name' => 'required|min:3|max:100', //最低３文字,最大100文字
             'description' => 'required|max:500', //最大500文字
             'price' => 'required|digits_between:1,10', //1から10桁までの数字
-            'image' => 'required|image|max:3000', //3000kb(3MB)以下のファイル
+            'image' => 'image|max:3000', //3000kb(3MB)以下のファイル
         ]);
 
         $CNL = "\r\n";//改行を変数化

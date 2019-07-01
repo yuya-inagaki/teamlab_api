@@ -5,41 +5,31 @@
 @section('title', 'データベース登録テスト')
 
 @section('content')
-<table>
+<div class="form">
     <form method="POST" action="{{ url('/products') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
+
+        <p>商品名</p>
         @if($errors->has('name'))
-        {{ $errors->first('name') }}
+        <span class="error">{{ $errors->first('name') }}</span>
         @endif
+        <input type="text" name="name" placeholder="商品名" value="{{ old('name') }}">
+        <p>説明</p>
         @if($errors->has('description'))
-        {{ $errors->first('description') }}
+        <span class="error">{{ $errors->first('description') }}</span>
         @endif
+        <textarea name="description">{{ old('description') }}</textarea>
+        <p>価格</p>
         @if($errors->has('price'))
-        {{ $errors->first('price') }}
+        <span class="error">{{ $errors->first('price') }}</span>
         @endif
+        <input type="text" name="price" placeholder="価格" value="{{ old('price') }}">
+        <p>画像</p>
         @if($errors->has('image'))
-        {{ $errors->first('image') }}
+        <span class="error">{{ $errors->first('image') }}</span>
         @endif
-        <tr>
-            <th>商品名</th>
-            <td><input type="text" name="name" value="{{ old('name') }}"></td>
-        </tr>
-        <tr>
-            <th>説明</th>
-            <td><textarea name="description">{{ old('description') }}</textarea></td>
-        </tr>
-        <tr>
-            <th>価格</th>
-            <td><input type="text" name="price" value="{{ old('price') }}"></td>
-        </tr>
-        <tr>
-            <th>画像</th>
-            <td><input type="file" name="image"></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td><input type="submit" value="送信"></td>
-        </tr>
+        <input type="file" name="image">
+        <input type="submit" value="送信">
     </form>
-</table>
+</div>
 @endsection
