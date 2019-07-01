@@ -97,7 +97,6 @@ class RestappController extends Controller
      */
     public function update(Request $request, $id) //変更
     {
-        // dd($request);
         return($request->name);
         if($product = Product::find($id)){
             $filename = $id . '.jpg';
