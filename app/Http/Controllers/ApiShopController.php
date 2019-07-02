@@ -87,7 +87,20 @@ class ApiShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($shop = Shop::find($id)){
+            $$shop->name = $request->name;
+            $shop->place = $request->place;
+            $shop->save();
+            return $shop->toArray();
+        }else{
+            $errors = [
+                'function' => 'delete',
+                'message' => 'no data',
+                'id' => $id
+            ];
+            $json =['error' =>$errors];
+            return $json;
+        }
     }
 
     /**

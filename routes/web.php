@@ -36,6 +36,8 @@ Route::get('shop/create', function () {
     return view('shop.create');
 });
 Route::get('shop/{id}', 'ShopController@show');
+Route::get('shop/{id}/edit', 'ShopController@edit');
+Route::post('shop/{id}/update/', 'ShopController@update');
 
 // APIのルーティング
 Route::resource('api/products', 'ApiProductController');

@@ -6,7 +6,7 @@
 <a href="{{ url('/product/create') }}">登録</a>
 
 @foreach ($shops as $shop)
-<h2>店名: {{ $shop->shop_name }}</h2>
+<h2>店名: {{ $shop->shop_name }}</h2><a href="{{ url('/shop') }}/{{ $shop->shop_id }}">店舗の詳細</a>
 <?php $products = $shop->products ?>
 
 @if( $products != 'none' )

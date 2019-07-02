@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="form">
-    <form method="POST" action="{{ url('/products') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/product') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <p>商品名</p>
