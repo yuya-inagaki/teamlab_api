@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB; //DBクラス使用のため追加
 
 class StockTableSeeder extends Seeder
 {
