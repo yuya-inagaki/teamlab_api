@@ -85,14 +85,7 @@ class ApiShowController extends Controller
             $products = Product::whereIn('id',$data)->get();
             return $products;
         }else{
-            $errors = [
-                'database' => 'stocks',
-                'function' => 'show',
-                'message' => 'no data',
-                'id' => $id
-            ];
-            $json =['error' =>$errors];
-            return $json;
+            return ('none');
         }
     }
 
