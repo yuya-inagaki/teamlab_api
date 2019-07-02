@@ -65,6 +65,13 @@ class ShopController extends Controller
         return redirect('/shop');
     }
 
+    // 店舗情報の編集画面
+    public function edit(Request $request){
+        $url = "https://app.y-canvas.com/teamlab_api/api/shops/".$request->id;
+        $shop = json_decode(file_get_contents($url));
+        return view('shop.edit', ['shop' => $shop]);
+    }
+
     // 店舗情報のアップデート
     public function update(Request $request){
         $this->validate($request,[
@@ -73,7 +80,7 @@ class ShopController extends Controller
         ]);
         $CNL = "\r\n";//改行を変数化
         //POST送信先URL
-        $url = 'https://app.y-canvas.com/teamlab_api/api/shops'.$request->id;
+        $url = 'https://app.y-canvas.com/teamlab_api/api/shops/'.$request->id;
         //テキストデータを記述
         $arrPost = array(
             'name' => $request->name,
