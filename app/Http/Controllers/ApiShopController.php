@@ -38,7 +38,11 @@ class ApiShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Shop();
+        $shop->name = $request->name;
+        $shop->place = $request->place;
+        $shop->save();
+        return $shop->toArray();
     }
 
     /**

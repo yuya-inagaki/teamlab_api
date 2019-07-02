@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB; //DBクラスを追加
 
 
-class HomeController extends Controller
+class ProductController extends Controller
 {
     public function show(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products";
@@ -19,13 +19,13 @@ class HomeController extends Controller
         // }else{
         //     $products = DB::select('select * from products');
         // }
-        return view('home.show', ['products' => $products]);
+        return view('product.show', ['products' => $products]);
     }
 
     public function show_shop(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/shows";
         $shops = json_decode(file_get_contents($url));
-        return view('home.show_shop', ['shops' => $shops]);
+        return view('product.show_shop', ['shops' => $shops]);
     }
 
     //データベースの削除
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
         $contents = file_get_contents($url, false, $context);
 
-        return redirect('/products');
+        return redirect('/product');
 
 
     }
@@ -251,14 +251,14 @@ class HomeController extends Controller
 
         $contents = file_get_contents($url, false, $context);
 
-        return redirect('/products');
+        return redirect('/product');
 
     }
 
     public function edit(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
         $product = json_decode(file_get_contents($url));
-        return view('home.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product]);
     }
 
 }

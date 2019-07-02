@@ -85,10 +85,12 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/products') }}">Products</a>
+                    <a href="{{ url('/product') }}">Product</a>
+                    <a href="{{ url('/shop') }}">Shop</a>
                     <a href="{{ url('/api/products') }}">PRODUCT API</a>
                     <a href="{{ url('/api/shops') }}">SHOP API</a>
                     <a href="{{ url('/api/stocks') }}">STOCK API</a>
+                    <a href="{{ url('/api/shows') }}">SHOW API</a>
                 </div>
             </div>
         </div>

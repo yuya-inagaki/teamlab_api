@@ -3,7 +3,7 @@
 @section('title', 'データベースの表示テスト')
 
 @section('content')
-<a href="{{ url('/products/create') }}">登録</a>
+<a href="{{ url('/product/create') }}">登録</a>
 <!-- <a href="{{ url('/products/destroy') }}">削除</a> -->
 <div class="row">
 @foreach ($products as $product)
@@ -16,8 +16,8 @@
             <p>id: {{$product->id}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
-            <a class="manage" href="{{ url('/products/destroy') }}/{{ $product->id }}"><i class="far fa-trash-alt"></i> 削除</a>
-            <a class="manage" href="{{ url('/products/edit') }}/{{ $product->id }}"><i class="far fa-edit"></i> 編集</a>
+            <a class="manage" href="{{ url('/product/destroy') }}/{{ $product->id }}"><i class="far fa-trash-alt"></i> 削除</a>
+            <a class="manage" href="{{ url('/product/edit') }}/{{ $product->id }}"><i class="far fa-edit"></i> 編集</a>
         </div>
     </div>
 

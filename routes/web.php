@@ -15,18 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('products/create', function () {
-    return view('home.create');
+//Product
+Route::get('product/create', function () {
+    return view('product.create');
 });
-Route::get('products/destroy/{id?}','HomeController@destroy');
-Route::get('products/edit/{id?}','HomeController@edit');
-Route::post('products', 'HomeController@store');
-Route::post('products/update/{id?}', 'HomeController@update');
+Route::get('product/destroy/{id?}','ProductController@destroy');
+Route::get('product/edit/{id?}','ProductController@edit');
+Route::post('product', 'ProductController@store');
+Route::post('product/update/{id?}', 'ProductController@update');
 
 // 一時的
-Route::get('products/shop', 'HomeController@show_shop');
+Route::get('product/shop', 'ProductController@show_shop');
 
-Route::get('products/{id?}', 'HomeController@show');
+Route::get('product/{id?}', 'ProductController@show');
+
+// Shop
+Route::get('shop', 'ShopController@index');
+Route::post('shop', 'ShopController@store');
+Route::get('shop/create', function () {
+    return view('shop.create');
+});
 
 // APIのルーティング
 Route::resource('api/products', 'ApiProductController');
