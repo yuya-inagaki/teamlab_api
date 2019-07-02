@@ -9,6 +9,7 @@
 <p>店名: {{ $shop->shop_name }}</p>
 <?php $products = $shop->products ?>
 
+@if( $products != 'none' )
 <div class="row">
 @foreach ($products as $product)
 <div class="col-md-4">
@@ -24,11 +25,12 @@
             <a class="manage" href="{{ url('/products/edit') }}/{{ $product->id }}"><i class="far fa-edit"></i> 編集</a>
         </div>
     </div>
-
 </div>
 @endforeach
 </div>
-
+@else
+商品なし
+@endif
 
 @endforeach
 
