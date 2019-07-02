@@ -18,9 +18,9 @@ class ShopController extends Controller
     public function show(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/shops/".$request->id;
         $shop = json_decode(file_get_contents($url));
-        $url = "https://app.y-canvas.com/teamlab_api/api/shows/".$shop->id;;
+        $url = "https://app.y-canvas.com/teamlab_api/api/shows/".$shop->id;
         $products = json_decode(file_get_contents($url));
-        return view('shop.show', ['shop' => $shop, 'products' => $products]);
+        return view('shop.show', ['shop' => $shop, 'products' => $products->data]);
     }
 
     // 店舗の登録
