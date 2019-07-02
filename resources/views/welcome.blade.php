@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>REST API CHECK</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,17 +81,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    REST API CHECK
                 </div>
 
                 <div class="links">
-                    <a href="./products">Products</a>
-                    <a href="./api/products">REST API</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ url('/products') }}">Products</a>
+                    <a href="{{ url('/api/products') }}">PRODUCT API</a>
+                    <a href="{{ url('/api/shops') }}">SHOP API</a>
+                    <a href="{{ url('/api/stocks') }}">STOCK API</a>
                 </div>
             </div>
         </div>

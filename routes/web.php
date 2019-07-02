@@ -24,5 +24,8 @@ Route::post('products', 'HomeController@store');
 Route::post('products/update/{id?}', 'HomeController@update');
 Route::get('products/{id?}', 'HomeController@show');
 
-
-Route::resource('api/products', 'ProductController');
+// APIのルーティング
+Route::resource('api/products', 'ApiProductController');
+Route::resource('api/shops', 'ApiShopController');
+Route::resource('api/stocks', 'ApiStockController');
+Route::resource('api/shows', 'ApiShowController');

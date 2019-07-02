@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Product; //プロダクトモデルを使用
 use Storage; //ストレージ処理（削除時）に使用
 
-class ProductController extends Controller
+class ApiProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,6 +67,7 @@ class ProductController extends Controller
             return $item->toArray();
         }else{
             $errors = [
+                'database' => 'products',
                 'function' => 'show',
                 'message' => 'no data',
                 'id' => $id
