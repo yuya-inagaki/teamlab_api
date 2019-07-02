@@ -22,6 +22,10 @@ Route::get('products/destroy/{id?}','HomeController@destroy');
 Route::get('products/edit/{id?}','HomeController@edit');
 Route::post('products', 'HomeController@store');
 Route::post('products/update/{id?}', 'HomeController@update');
+
+// 一時的
+Route::get('products/shop', 'HomeController@show_shop');
+
 Route::get('products/{id?}', 'HomeController@show');
 
 // APIのルーティング

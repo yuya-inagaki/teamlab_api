@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Product; //プロダクトモデルを使用
+use App\Stock; //Stockモデルを使用
 use Storage; //ストレージ処理（削除時）に使用
 
 class ApiProductController extends Controller
@@ -134,6 +135,8 @@ class ApiProductController extends Controller
     public function destroy($id) //削除
     {
         if($product = Product::find($id)){
+            $stocks = Stock::where('product_id',$id);
+            $stocks->delete();
             $filename = $id . '.jpg';
             Storage::disk('local')->delete('public/product_images/'.$filename);
             $product->delete();

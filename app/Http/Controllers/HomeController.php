@@ -22,6 +22,12 @@ class HomeController extends Controller
         return view('home.show', ['products' => $products]);
     }
 
+    public function show_shop(Request $request){
+        $url = "https://app.y-canvas.com/teamlab_api/api/shows";
+        $shops = json_decode(file_get_contents($url));
+        return view('home.show_shop', ['shops' => $shops]);
+    }
+
     //データベースの削除
     public function destroy(Request $request){
         $url ="https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
