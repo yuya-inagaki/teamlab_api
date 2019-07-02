@@ -25,4 +25,4 @@ Route::post('products/update/{id?}', 'HomeController@update');
 Route::get('products/{id?}', 'HomeController@show');
 
 
-Route::resource('api/products', 'RestappController');
+Route::resource('api/products', 'ProductController');

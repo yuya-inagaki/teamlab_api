@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Product; //プロダクトモデルを使用
 use Storage; //ストレージ処理（削除時）に使用
 
-class RestappController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
