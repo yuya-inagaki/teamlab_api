@@ -20,6 +20,7 @@ class ShopController extends Controller
         $shop = json_decode(file_get_contents($url));
         $url = "https://app.y-canvas.com/teamlab_api/api/shows/".$shop->id;;
         $products = json_decode(file_get_contents($url));
+        dd($products);
         return view('shop.show', ['shop' => $shop, 'products' => $products]);
     }
 
