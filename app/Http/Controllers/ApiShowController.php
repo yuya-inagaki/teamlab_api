@@ -85,7 +85,8 @@ class ApiShowController extends Controller
             $products = Product::whereIn('id',$data)->get();
             return $products;
         }else{
-            return 'none';
+            $data = ('none');
+            return $data;
         }
     }
 
