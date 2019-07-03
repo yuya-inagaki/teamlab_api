@@ -19,16 +19,9 @@ class ApiProductController extends Controller
     {
         if($ids = $request->input('id')){ //idによる検索
             $ids = explode(',', $ids);
+            $products = Product::whereIn('id',$ids)->get();
+            return $products;
 
-            $products = Product::where(function ($query) use ($ids) {
-                foreach ($ids as $id) {
-                    $query->where('id',$id);
-                }
-            })->get();
-            return $products->toArray();
-
-            $product = Product::where('id', $id)->get();
-            return $product->toArray();
         }else if($names = $request->input('name')){ //名前による検索
             $names = explode(',', $names);
             $products = Product::where(function ($query) use ($names) {
