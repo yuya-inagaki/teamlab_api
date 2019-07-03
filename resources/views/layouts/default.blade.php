@@ -3,13 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="{{ url('/css/bootstrap-grid.min.css') }}">
     <link rel="stylesheet" href="{{ url('/css/style.css') }}">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'ccq4pnt',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
 
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
     <header>
@@ -23,7 +33,7 @@
                 @else
                 <a class="menu-inner" href="{{ url('/product') }}">
                 @endif
-                    <div><i class="fas fa-store"></i><br><span>商品一覧</span></div>
+                    <div><i class="fas fa-shopping-cart"></i><br><span>商品一覧</span></div>
                 </a>
 
                 @if ($__env->yieldContent('title') == '店舗一覧')
@@ -31,7 +41,7 @@
                 @else
                 <a class="menu-inner" href="{{ url('/shop') }}">
                 @endif
-                    <div><i class="fas fa-shopping-bag"></i><br><span>店舗一覧</span></div>
+                    <div><i class="fas fa-store"></i><br><span>店舗一覧</span></div>
                 </a>
 
                 @if ($__env->yieldContent('title') == '商品登録')
@@ -68,7 +78,7 @@
                 @else
                 <a class="menu-inner" href="{{ url('/product') }}">
                 @endif
-                    <i class="fas fa-store fa-fw"></i> <span>商品一覧</span>
+                    <i class="fas fa-shopping-cart"></i> <span>商品一覧</span>
                 </a>
 
                 @if ($__env->yieldContent('title') == '店舗一覧')
@@ -76,7 +86,7 @@
                 @else
                 <a class="menu-inner" href="{{ url('/shop') }}">
                 @endif
-                    <i class="fas fa-shopping-bag fa-fw"></i> <span>店舗一覧</span>
+                    <i class="fas fa-store fa-fw"></i> <span>店舗一覧</span>
                 </a>
 
                 @if ($__env->yieldContent('title') == '商品登録')

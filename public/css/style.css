@@ -1,5 +1,8 @@
 body{margin:0; padding:0;}
 
+h1, h2{font-family: a-otf-ud-shin-go-pr6n, sans-serif; font-style: normal; display:inline-block; padding:0 50px 0 10px; border-bottom:2px solid gray;}
+h1 i{font-size:25px; color:#303030;}
+
 /* ヘッダーメニュー */
 header{width:100%;}
 @media(min-width:600px){
@@ -38,13 +41,44 @@ header .menu-sm .menu a.menu-inner span{margin-left:10px; letter-spacing:5px;}
 .menu-trigger.active span:nth-of-type(3) {-webkit-transform: translateY(-15px) rotate(315deg); transform: translateY(-13.6px) rotate(315deg);}
 /* //ハンバーガーボタン */
 
-
-.product-inner{width:100%; margin:10px 0; background-color:white; border-radius:5px; box-shadow: 0px 2px 13px 0px rgba(116, 116, 116, 0.55);}
-.product-inner .image{width:100%; height:200px; border-top-left-radius:5px; border-top-right-radius:5px;}
-.product-inner .info{padding:10px;}
+/* 商品一覧表示 */
+.product-inner{width:100%; display:block; box-sizing:content-box; margin:10px 0; background-color:white; border-radius:5px; box-shadow: 0px 2px 13px 0px rgba(116, 116, 116, 0.55); transition:0.3s; color:black; text-decoration:none;}
+.product-inner .image{width:100%; height:200px; border-top-left-radius:5px; border-top-right-radius:5px; transition:0.3s;}
+.product-inner .info{padding:20px 10px 5px;}
 .product-inner .name{color:white; font-size:1.5em; font-weight:bold;}
-.product-inner a.manage{display:inline-block; border:1px solid gray; border-radius:15px; padding:3px 10px; text-decoration:none; color:gray; font-size:10px; transition:0.3s;}
-.product-inner a.manage:hover{background:gray; color:white;}
+.product-inner .price{position:absolute; bottom:-20px; right:15px; font-size:0.9em; background:black; color:white; font-weight:bold; padding:7px 15px; border-radius:20px;}
+.product-inner:hover{box-shadow:0px 2px 5px 0px rgba(116, 116, 116, 0.55);}
+.product-inner:hover .image{opacity:0.9;}
+/* //商品一覧表示 */
+
+/* 店舗一覧表示 */
+table.shoplist{width:100%; border-collapse: collapse;}
+table.shoplist th{padding: 15px 5px; text-align:left; border-bottom:1px solid #3b3b3b;}
+table.shoplist td{padding: 15px 5px; border-bottom:1px solid #c4c4c4;}
+/* //店舗一覧表示 */
+
+/* 商品index */
+.product_index{padding:30px 0;}
+/* //商品index */
+
+/* 商品show */
+.product_show{padding:30px 0 100px;}
+/* //商品show */
+
+/* 店舗index */
+.shop_index{padding:30px 0;}
+/* //店舗index */
+
+/* 店舗show */
+.shop_show{padding:30px 0;}
+.edit_btn{position:absolute; top:20px; left:30px;}
+.edit_btn a.manage{display:inline-block; border-radius:15px; padding:3px 10px; text-decoration:none; font-size:12px; transition:0.3s; background:rgba(255, 255, 255, 0.55); font-weight:bold; border:1px solid gray; color:gray;}
+.edit_btn a.manage:hover{border:1px solid gray; color:white; background:gray;}
+.edit_btn a.delete{border:1px solid red; color:red;}
+.edit_btn a.delete:hover{border:1px solid red; color:white; background:red;}
+.edit_btn a.add{border:1px solid #1fa1ff; color:#1fa1ff;}
+.edit_btn a.add:hover{border:1px solid #1fa1ff; color:white; background:#1fa1ff;}
+/* //店舗show */
 
 /* 登録・修正フォームCSS */
 .form{width:100%; max-width:600px; margin:20px auto;}
