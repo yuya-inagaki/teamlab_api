@@ -14,10 +14,16 @@ class ApiShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $shops = Shop::all();
-        return $shops->toArray();
+        if($ids = $request->input('id')){ //idによる検索
+            $ids = explode(',', $ids);
+            $shops = Shop::whereIn('id',$ids)->get();
+            return $shops;
+        }else{
+            $shops = Shop::all();
+            return $shops->toArray();
+        }
     }
 
     /**

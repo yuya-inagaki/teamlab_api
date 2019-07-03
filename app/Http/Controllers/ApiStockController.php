@@ -16,10 +16,18 @@ class ApiStockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stocks = Stock::all();
-        return $stocks->toArray();
+        if($shop_id = $request->input('shop')){ //shopが保有している商品IDの一覧を返す
+            $stocks = Stock::where('shop_id',$shop_id)->get();
+            return $stocks;
+        }else if($product_id = $request->input('product')){ //該当製品を扱う店舗の一覧を返す
+            $stocks = Stock::where('product_id',$product_id)->get();
+            return $stocks;
+        }else{
+            $stocks = Stock::all();
+            return $stocks->toArray();
+        }
     }
 
     /**
