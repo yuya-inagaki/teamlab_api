@@ -55,6 +55,7 @@ header .menu-sm .menu a.menu-inner span{margin-left:10px; letter-spacing:5px;}
 table.shoplist{width:100%; border-collapse: collapse;}
 table.shoplist th{padding: 15px 5px; text-align:left; border-bottom:1px solid #3b3b3b;}
 table.shoplist td{padding: 15px 5px; border-bottom:1px solid #c4c4c4;}
+table.shoplist td a{color:black;}
 /* //店舗一覧表示 */
 
 /* 商品index */
@@ -89,6 +90,9 @@ table.shoplist td{padding: 15px 5px; border-bottom:1px solid #c4c4c4;}
 /* プロダクト詳細ページ */
 .product_show{width:100%;}
 .product_show .image{width:100%; height:400px; margin:20px 0; border-radius:10px; box-shadow: 0px 2px 13px 0px rgba(116, 116, 116, 0.55);}
+@media(max-width:600px){
+    .product_show .image{width:100%; height:280px;}
+}
 /* //プロダクト詳細ページ */
 
 /* オリジナルCSS */
