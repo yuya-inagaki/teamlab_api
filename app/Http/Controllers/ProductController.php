@@ -21,6 +21,46 @@ class ProductController extends Controller
         return view('product.show', ['product' => $product]);
     }
 
+    public function stock_store(Request $request){
+        $product_id = $request->product_id;
+        $shop_id = $request->shop_id;
+
+        $CNL = "\r\n";//改行を変数化
+        //POST送信先URL
+        $url = 'https://app.y-canvas.com/teamlab_api/api/stocks';
+        //テキストデータを記述
+        $arrPost = array(
+            'product_id' => $product_id,
+            'shop_id' => $shop_id,
+        );
+        $arrContent = [];
+        $boundary = "----1234567890";
+        //ペイロード作成
+        $arrContent[] = $CNL.'--'.$boundary;//開始
+        if(count($arrPost) > 0){
+            foreach($arrPost as $key => $val) {
+                $arrContent[] = 'Content-Disposition: form-data; name="'.$key.'"'.$CNL;
+                $arrContent[] = $val;
+                $arrContent[] = '--'.$boundary;
+            }
+        }
+        $content = join($CNL, $arrContent);
+        $content .= '--'.$CNL;//終端
+        $header = join($CNL,array(
+            "Content-Type: multipart/form-data; boundary=".$boundary,
+            "Content-Length: ".strlen($content)
+        ));
+        $context = stream_context_create(array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => $header,
+                'content' => $content
+            )
+        ));
+        $contents = file_get_contents($url, false, $context);
+        return redirect('/shop/');
+    }
+
     public function show_shop(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/shows";
         $shops = json_decode(file_get_contents($url));

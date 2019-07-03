@@ -46,7 +46,7 @@
             <p>id: {{$product->id}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
-            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/destroy"><i class="far fa-trash-alt"></i> 追加</a>
+            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/stock/{{ $shop->id }}"><i class="far fa-trash-alt"></i> 追加</a>
         </div>
     </div>
 </div>

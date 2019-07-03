@@ -48,7 +48,11 @@ class ApiStockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stock = new Stock();
+        $stock->shop_id = $request->shop_id;
+        $stock->product_id = $request->product_id;
+        $stock->save();
+        return $stock->toArray();
     }
 
     /**
