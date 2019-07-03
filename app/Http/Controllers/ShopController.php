@@ -15,12 +15,22 @@ class ShopController extends Controller
         return view('shop.index', ['shops' => $shops]);
     }
 
+    // 店舗詳細情報表示
     public function show(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/shops/".$request->id;
         $shop = json_decode(file_get_contents($url));
-        $url = "https://app.y-canvas.com/teamlab_api/api/shows/".$shop->id;
+        // $url = "https://app.y-canvas.com/teamlab_api/api/shows/".$shop->id;
+        // $products = json_decode(file_get_contents($url));
+        $url = "https://app.y-canvas.com/teamlab_api/api/stocks/?shop=".$shop->id;
+        $stocks = json_decode(file_get_contents($url));
+        $shop_stocks = [];
+        foreach ($stocks as $stock){
+            $shop_stocks[] = $stock->product_id;
+        }
+        // $shop_product_list = implode(",", $shop_product_list);
+        $url = "https://app.y-canvas.com/teamlab_api/api/products/";
         $products = json_decode(file_get_contents($url));
-        return view('shop.show', ['shop' => $shop, 'products' => $products->data]);
+        return view('shop.show', ['shop' => $shop, 'products' => $products, 'shop_stocks' => $shop_stocks]);
     }
 
     // 店舗の登録
