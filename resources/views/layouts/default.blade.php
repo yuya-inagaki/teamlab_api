@@ -16,7 +16,7 @@
         <div class="menu-pc">
             <div class="container">
                 <a class="menu-inner logo" href="{{ url('') }}">
-                    <img src="{{ url('/image/logo_black.png') }" width="150px">
+                    <img src="{{ url('/image/logo_black.png') }}" width="150px">
                 </a>
                 @if ($__env->yieldContent('title') == '商品一覧')
                 <a class="menu-inner select" href="{{ url('/product') }}">
