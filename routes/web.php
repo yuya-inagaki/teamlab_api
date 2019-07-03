@@ -23,8 +23,7 @@ Route::get('product/{id}/destroy','ProductController@destroy');
 Route::get('product/{id}/edit','ProductController@edit');
 Route::post('product', 'ProductController@store');
 Route::post('product/{id}/update', 'ProductController@update');
-Route::get('product/{product_id}/stock/{shop_id}', 'ProductController@stock_store');
-Route::get('product/{product_id}/destroy/{shop_id}', 'ProductController@stock_destroy');
+Route::get('product/{product_id}/stock/{shop_id}', 'ProductController@stock_operation');
 
 // 一時的
 Route::get('product/shop', 'ProductController@show_shop');

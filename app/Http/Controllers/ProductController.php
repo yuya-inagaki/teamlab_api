@@ -18,10 +18,20 @@ class ProductController extends Controller
     public function show(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
         $product = json_decode(file_get_contents($url));
-        return view('product.show', ['product' => $product]);
+
+        $url = "https://app.y-canvas.com/teamlab_api/api/stocks/?product=".$product->id;
+        $stocks = json_decode(file_get_contents($url));
+        $shops_id = [];
+        foreach ($stocks as $stock){
+            $shops_id[] = $stock->shop_id;
+        }
+        $shops_id = implode(",", $shops_id);
+        $url = "https://app.y-canvas.com/teamlab_api/api/shops/?id=".$shops_id;
+        $shops = json_decode(file_get_contents($url));
+        return view('product.show', ['product' => $product, 'shops' => $shops]);
     }
 
-    public function stock_store(Request $request){
+    public function stock_operation(Request $request){
         $product_id = $request->product_id;
         $shop_id = $request->shop_id;
 
@@ -59,25 +69,6 @@ class ProductController extends Controller
         ));
         $contents = file_get_contents($url, false, $context);
         return redirect('/shop/'.$shop_id);
-    }
-
-    public function stock_destroy(Request $request){
-        $product_id = $request->product_id;
-        $shop_id = $request->shop_id;
-        return $product_id. '->'. $shop_id;
-        // $url ="https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
-        //
-        // $options = [
-        //     CURLOPT_CUSTOMREQUEST => 'DELETE',
-        //     CURLOPT_SSL_VERIFYPEER => false,
-        //     CURLOPT_RETURNTRANSFER => true,
-        // ];
-        //
-        // $curl = curl_init($url);
-        // curl_setopt_array($curl, $options);
-        // $response = curl_exec($curl);
-        // curl_close($curl);
-        // return redirect('/products');
     }
 
     public function show_shop(Request $request){
