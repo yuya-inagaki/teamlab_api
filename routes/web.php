@@ -19,15 +19,15 @@ Route::get('/', function () {
 Route::get('product/create', function () {
     return view('product.create');
 });
-Route::get('product/destroy/{id?}','ProductController@destroy');
-Route::get('product/edit/{id?}','ProductController@edit');
+Route::get('product/{id}/destroy','ProductController@destroy');
+Route::get('product/{id}/edit','ProductController@edit');
 Route::post('product', 'ProductController@store');
-Route::post('product/update/{id?}', 'ProductController@update');
+Route::post('product/{id}/update', 'ProductController@update');
 
 // 一時的
 Route::get('product/shop', 'ProductController@show_shop');
-
-Route::get('product/{id?}', 'ProductController@show');
+Route::get('product/{id}', 'ProductController@show');
+Route::get('product', 'ProductController@index');
 
 // Shop
 Route::get('shop', 'ShopController@index');

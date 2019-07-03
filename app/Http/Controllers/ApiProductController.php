@@ -15,10 +15,33 @@ class ApiProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() //一覧表示（検索）
+    public function index(Request $request) //一覧表示（検索）
     {
-        $products = Product::all();
-        return $products->toArray();
+        if($ids = $request->input('id')){ //idによる検索
+            $ids = explode(',', $ids);
+
+            $products = Product::where(function ($query) use ($ids) {
+                foreach ($ids as $id) {
+                    $query->where('id',$id);
+                }
+            })->get();
+            return $products->toArray();
+
+            $product = Product::where('id', $id)->get();
+            return $product->toArray();
+        }else if($names = $request->input('name')){ //名前による検索
+            $names = explode(',', $names);
+            $products = Product::where(function ($query) use ($names) {
+                foreach ($names as $name) {
+                    $query->where('name', 'LIKE', "%{$name}%");
+                }
+            })->get();
+            return $products->toArray();
+        }else{
+            // 一覧表示
+            $products = Product::all();
+            return $products->toArray();
+        }
     }
 
     /**

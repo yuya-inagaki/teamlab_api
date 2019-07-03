@@ -9,17 +9,16 @@ use Illuminate\Support\Facades\DB; //DBクラスを追加
 
 class ProductController extends Controller
 {
-    public function show(Request $request){
+    public function index(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products";
         $products = json_decode(file_get_contents($url));
-        //
-        // if(isset($request->id)){
-        //     $params = ['id' => $request->id];
-        //     $products = DB::select('select * from products where id = :id', $params);
-        // }else{
-        //     $products = DB::select('select * from products');
-        // }
-        return view('product.show', ['products' => $products]);
+        return view('product.index', ['products' => $products]);
+    }
+
+    public function show(Request $request){
+        $url = "https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
+        $product = json_decode(file_get_contents($url));
+        return view('product.show', ['product' => $product]);
     }
 
     public function show_shop(Request $request){
@@ -121,68 +120,6 @@ class ProductController extends Controller
 
     //データベースの登録
     public function store(Request $request){
-        // $url = "https://app.y-canvas.com/teamlab_api/api/products/";
-        // $data = array(
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     // 'image' => new \CURLFile($_FILES["image"]["tmp_name"],'image/jpeg','test_name')
-        // );
-        //
-        // $header = [
-        //     'Content-Type: application/json',
-        // ];
-        //
-        // $curl = curl_init($url);
-        // $options = [
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_POSTFIELDS => json_encode($data), // jsonデータを送信
-        //     CURLOPT_HTTPHEADER => $header, // リクエストにヘッダーを含める
-        //     CURLOPT_SSL_VERIFYPEER => false,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_RETURNTRANSFER => true,
-        // ];
-        // // dd($options);
-        //
-        // curl_setopt_array($curl, $options);
-        // $response = curl_exec($curl);
-        // // dd($response);
-        // curl_close($curl);
-        // return redirect('/products');
-
-
-        // $url = "https://app.y-canvas.com/teamlab_api/api/products";
-        //
-        // // 画像に関する処理
-        // $filePath = $_FILES['image']['tmp_name'];
-        // $fileName = basename($filePath);
-        // $file = file_get_contents($filePath); //ファイルの内容の取得
-        //
-        // $data = array(
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'image' => array(
-        //         'file_name' => $fileName,
-        //         'Content-Type' => 'image/jpeg',
-        //         $file
-        //     )
-        // );
-        // // HTTPヘッダの内容(※ここがかなり重要っぽい)
-        // $header = array(
-        //     'Content-Type: application/x-www-form-urlencoded',
-        // );
-        // $content = http_build_query($data);
-        // $options = array(
-        //     'http' => array(
-        //         'method' => 'POST',
-        //         'header' => implode("\r\n", $header),
-        //         'content' => $content
-        //     )
-        // );
-        // // dd($options);
-        // $contents = file_get_contents($url, false, stream_context_create($options));
-        // return $contents;
 
         $this->validate($request,[
             'name' => 'required|min:3|max:100', //最低３文字,最大100文字

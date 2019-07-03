@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="form">
-    <form method="POST" action="{{ url('/product/update') }}/{{ $product->id }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/product') }}/{{ $product->id }}/update" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <p>商品名</p>

@@ -1,14 +1,10 @@
 @extends('layouts.default')
 
-@section('title', '店舗詳細')
+@section('title', 'データベースの表示テスト')
 
 @section('content')
-
-<p>{{ $shop->name }}</p>
-<p>{{ $shop->place }}</p>
-<a href="{{ url('/shop') }}/{{ $shop->id }}/edit">店舗情報編集</a>
-
-@if( $products != 'none' )
+<a href="{{ url('/product/create') }}">登録</a>
+<!-- <a href="{{ url('/products/destroy') }}">削除</a> -->
 <div class="row">
 @foreach ($products as $product)
 <div class="col-md-4">
@@ -25,11 +21,8 @@
             <a class="manage" href="{{ url('/product') }}/{{ $product->id }}"><i class="far fa-edit"></i> 詳細</a>
         </div>
     </div>
+
 </div>
 @endforeach
 </div>
-@else
-商品なし
-@endif
-
 @endsection
