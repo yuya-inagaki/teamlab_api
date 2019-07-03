@@ -48,11 +48,23 @@ class ApiStockController extends Controller
      */
     public function store(Request $request)
     {
-        $stock = new Stock();
-        $stock->shop_id = $request->shop_id;
-        $stock->product_id = $request->product_id;
-        $stock->save();
-        return $stock->toArray();
+        $shop_id = $request->shop_id;
+        $product_id = $request->product_id;
+
+        $query = Stock::query();
+        $query->where('shop_id',$shop_id);
+        $query->where('product_id',$product_id);
+        $stock = $query->get();
+        if(count($stock)!=0){
+            $stock[0]->delete();
+            return $stock->toArray();
+        }else{
+            $stock = new Stock();
+            $stock->shop_id = $request->shop_id;
+            $stock->product_id = $request->product_id;
+            $stock->save();
+            return $stock->toArray();
+        }
     }
 
     /**

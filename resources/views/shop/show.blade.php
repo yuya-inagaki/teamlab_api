@@ -23,8 +23,7 @@
             <p>id: {{$product->id}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
-            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/destroy"><i class="far fa-trash-alt"></i> 削除</a>
-            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/edit"><i class="far fa-edit"></i> 編集</a>
+            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/destroy/{{ $shop->id }}"><i class="fas fa-minus-circle"></i> 削除</a>
             <a class="manage" href="{{ url('/product') }}/{{ $product->id }}"><i class="far fa-edit"></i> 詳細</a>
         </div>
     </div>
@@ -46,7 +45,8 @@
             <p>id: {{$product->id}}</p>
             <p>description: {{$product->description}}</p>
             <p>price: {{$product->price}} 円</p>
-            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/stock/{{ $shop->id }}"><i class="far fa-trash-alt"></i> 追加</a>
+            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}/stock/{{ $shop->id }}"><i class="fas fa-plus-circle"></i> 追加</a>
+            <a class="manage" href="{{ url('/product') }}/{{ $product->id }}"><i class="far fa-edit"></i> 詳細</a>
         </div>
     </div>
 </div>

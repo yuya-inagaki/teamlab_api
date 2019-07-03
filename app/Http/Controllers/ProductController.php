@@ -58,7 +58,26 @@ class ProductController extends Controller
             )
         ));
         $contents = file_get_contents($url, false, $context);
-        return redirect('/shop/');
+        return redirect('/shop/'.$shop_id);
+    }
+
+    public function stock_destroy(Request $request){
+        $product_id = $request->product_id;
+        $shop_id = $request->shop_id;
+        return $product_id. '->'. $shop_id;
+        // $url ="https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
+        //
+        // $options = [
+        //     CURLOPT_CUSTOMREQUEST => 'DELETE',
+        //     CURLOPT_SSL_VERIFYPEER => false,
+        //     CURLOPT_RETURNTRANSFER => true,
+        // ];
+        //
+        // $curl = curl_init($url);
+        // curl_setopt_array($curl, $options);
+        // $response = curl_exec($curl);
+        // curl_close($curl);
+        // return redirect('/products');
     }
 
     public function show_shop(Request $request){
