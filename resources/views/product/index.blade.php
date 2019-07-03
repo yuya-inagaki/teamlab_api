@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'データベースの表示テスト')
+@section('title', '商品一覧')
 
 @section('content')
 <a href="{{ url('/product/create') }}">登録</a>

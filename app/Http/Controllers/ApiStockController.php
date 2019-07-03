@@ -26,7 +26,7 @@ class ApiStockController extends Controller
             return $stocks;
         }else{
             $stocks = Stock::all();
-            return $stocks->toArray();
+            return $stocks->toArray();    
         }
     }
 

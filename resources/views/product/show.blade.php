@@ -6,9 +6,12 @@
 <div class="product_show">
 <div class="image" style="background:url('{{ $product->image }}') center / cover ;"></div>
 <p>{{ $product->name }}</p>
+<p>{{ $product->price }}円</p>
 <p>{{ $product->description }}</p>
 </div>
 
+<h2>取扱店舗一覧</h2>
+@if( $shops != 'none' )
 <div class="row">
 @foreach ($shops as $shop)
 <div class="col-md-4">
@@ -20,5 +23,8 @@
 </div>
 @endforeach
 </div>
+@else
+取扱店舗なし
+@endif
 
 @endsection

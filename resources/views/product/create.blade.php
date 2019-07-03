@@ -2,7 +2,7 @@
 
 @extends('layouts.default')
 
-@section('title', 'データベース登録テスト')
+@section('title', '商品登録')
 
 @section('content')
 <div class="form">

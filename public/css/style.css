@@ -1,6 +1,43 @@
 body{margin:0; padding:0;}
-header{width:100%; height:50px; background-color:gray; position:relative;}
-header span{position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:white; font-size:20px;}
+
+/* ヘッダーメニュー */
+header{width:100%;}
+@media(min-width:600px){
+    header .menu-pc{display:block;}
+    header .menu-sm{display:none;}
+    .header-sapce{width:100%; height:80px;}
+}
+@media(max-width:599px){
+    header .menu-sm{display:block;}
+    header .menu-pc{display:none;}
+    .header-sapce{width:100%; height:50px;}
+}
+header .menu-pc{background:white; width:100%; height:80px; position:fixed; top:0; z-index:1; box-shadow:0px 2px 5px 0px rgba(116, 116, 116, 0.55);}
+header .menu-pc .container{display:flex;}
+header .menu-pc a.menu-inner{height:80px; padding:0px 20px; vertical-align: middle; display:flex; align-items: center; text-align:center; border-right:1px solid #d9d9d9; color:rgb(57, 57, 57); transition:0.3s; text-decoration:none;}
+header .menu-pc a.menu-inner span{font-size:12px; letter-spacing:5px;}
+header .menu-pc a.menu-inner:hover, header .menu-pc a.select{background:#303030; color:white;}
+header .menu-pc a.logo:hover{background:white;}
+
+header .menu-sm{background:white; width:100%; height:50px; position:fixed; top:0; z-index:1; box-shadow:0px 2px 5px 0px rgba(116, 116, 116, 0.55); text-align:center;}
+header .menu-sm a.logo img{height:30px; margin:10px auto;}
+header .menu-sm .menu{background-color:white; padding:10px 0; margin:0; display:none;}
+header .menu-sm .menu a.menu-inner{ padding:10px; border-bottom:1px solid #dfdfdf; display:block; color:#5c5c5c; text-decoration:none;}
+header .menu-sm .menu a.menu-inner span{margin-left:10px; letter-spacing:5px;}
+/* //ヘッダーメニュー */
+
+/* ハンバーガーボタン */
+.menu-trigger,.menu-trigger span {display: inline-block; transition: all .4s; box-sizing: border-box;}
+.menu-trigger {position:absolute; width: 30px; height: 30px; margin-top:10px; right:10px;}
+.menu-trigger span {position: absolute; left: 0; width: 100%; height:3px; background-color:#6c6c6c; border-radius:3px;}
+.menu-trigger span:nth-of-type(1) {top: 0;}
+.menu-trigger span:nth-of-type(2) {top: 13px;}
+.menu-trigger span:nth-of-type(3) {bottom: 0;}
+.menu-trigger.active span:nth-of-type(1) {-webkit-transform: translateY(15px) rotate(-315deg); transform: translateY(13.6px) rotate(-315deg);}
+.menu-trigger.active span:nth-of-type(2) {opacity: 0;}
+.menu-trigger.active span:nth-of-type(3) {-webkit-transform: translateY(-15px) rotate(315deg); transform: translateY(-13.6px) rotate(315deg);}
+/* //ハンバーガーボタン */
+
 
 .product-inner{width:100%; margin:10px 0; background-color:white; border-radius:5px; box-shadow: 0px 2px 13px 0px rgba(116, 116, 116, 0.55);}
 .product-inner .image{width:100%; height:200px; border-top-left-radius:5px; border-top-right-radius:5px;}

@@ -25,9 +25,13 @@ class ProductController extends Controller
         foreach ($stocks as $stock){
             $shops_id[] = $stock->shop_id;
         }
-        $shops_id = implode(",", $shops_id);
-        $url = "https://app.y-canvas.com/teamlab_api/api/shops/?id=".$shops_id;
-        $shops = json_decode(file_get_contents($url));
+        if(count($shops_id)!=0){
+            $shops_id = implode(",", $shops_id);
+            $url = "https://app.y-canvas.com/teamlab_api/api/shops/?id=".$shops_id;
+            $shops = json_decode(file_get_contents($url));
+        }else{
+            $shops = 'none';
+        }
         return view('product.show', ['product' => $product, 'shops' => $shops]);
     }
 
@@ -91,7 +95,7 @@ class ProductController extends Controller
         curl_setopt_array($curl, $options);
         $response = curl_exec($curl);
         curl_close($curl);
-        return redirect('/products');
+        return redirect('/product');
     }
 
     //アップデート
