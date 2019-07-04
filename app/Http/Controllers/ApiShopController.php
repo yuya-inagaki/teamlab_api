@@ -21,7 +21,7 @@ class ApiShopController extends Controller
             $ids = explode(',', $ids);
             $shops = Shop::whereIn('id',$ids)->get();
             return $shops;
-        }else{
+        }else{ //一覧表示
             $shops = Shop::all();
             return $shops->toArray();
         }

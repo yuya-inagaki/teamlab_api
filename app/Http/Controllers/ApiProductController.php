@@ -15,7 +15,7 @@ class ApiProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) //一覧表示（検索）
+    public function index(Request $request) //一覧表示・検索
     {
         if($ids = $request->input('id')){ //idによる検索
             $ids = explode(',', $ids);
@@ -29,8 +29,7 @@ class ApiProductController extends Controller
                 }
             })->get();
             return $products->toArray();
-        }else{
-            // 一覧表示
+        }else{ // 一覧表示
             $products = Product::all();
             return $products->toArray();
         }
@@ -43,7 +42,7 @@ class ApiProductController extends Controller
      */
     public function create()
     {
-        return 'Createについて記述';
+        //
     }
 
     /**
@@ -99,9 +98,9 @@ class ApiProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) //変更
+    public function edit($id)
     {
-        return 'Editについて記述';
+        //
     }
 
     /**

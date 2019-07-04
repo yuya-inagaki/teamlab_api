@@ -40,7 +40,12 @@ Route::post('shop/{id}/update/', 'ShopController@update');
 Route::get('shop/{id}/destroy/', 'ShopController@destroy');
 
 // APIのルーティング
-Route::resource('api/products', 'ApiProductController');
-Route::resource('api/shops', 'ApiShopController');
-Route::resource('api/stocks', 'ApiStockController');
-Route::resource('api/shows', 'ApiShowController');
+Route::resource('api/products', 'ApiProductController', [
+    'only' => ['index', 'store', 'show', 'update', 'destroy']
+]);
+Route::resource('api/shops', 'ApiShopController', [
+    'only' => ['index', 'store', 'show', 'update', 'destroy']
+]);
+Route::resource('api/stocks', 'ApiStockController', [
+    'only' => ['index', 'store', 'show']
+]);
