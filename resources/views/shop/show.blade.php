@@ -10,7 +10,12 @@
             <div><h1>{{ $shop->name }}</h1></div>
             <p>場所：{{ $shop->place }}</p>
             <a class="btn-link" href="{{ url('/shop') }}/{{ $shop->id }}/edit"><i class="far fa-edit"></i> 店舗情報編集</a>
-            <a class="btn-link" href="{{ url('/shop') }}/{{ $shop->id }}/destroy"><i class="far fa-edit"></i> 店舗削除</a>
+            <a class="btn-link delete-trigger"><i class="fas fa-minus"></i> 店舗削除</a>
+            <div class="delete-check">
+                <p style="color:red;">本当に{{ $shop->name }}を削除しますか？削除すると元に戻せません</p>
+                <a class="btn-link red" href="{{ url('/shop') }}/{{ $shop->id }}/destroy"><i class="far fa-thumbs-up"></i> はい</a>
+                <a class="btn-link blue delete-check-close"><i class="far fa-times-circle"></i> いいえ</a>
+            </div>
         </div>
     </div><!-- sec1 -->
 

@@ -115,11 +115,21 @@
 </html>
 
 
-<script type="text/javascript"><!-- ハンバーガーメニュー用 -->
-$('.menu-trigger').on('click', function() {
+<script type="text/javascript">
+$('.menu-trigger').on('click', function() { //ハンバーガーメニュー
     $(this).toggleClass('active');
     if ($('.mobile_menu').is(':hidden')) $('.mobile_menu').slideDown();
     else $('.mobile_menu').slideUp();
+    return false;
+});
+$('.delete-trigger').on('click', function() { //削除確認用
+    $(this).toggleClass('active');
+    $('.delete-check').slideDown();
+    return false;
+});
+$('.delete-check-close').on('click', function() { //削除確認用
+    $('.delete-trigger').toggleClass('active');
+    $('.delete-check').slideUp();
     return false;
 });
 </script>
