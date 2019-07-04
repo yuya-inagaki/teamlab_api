@@ -1,98 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.default')
 
-        <title>REST API CHECK</title>
+@section('title', 'SHOP API')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@section('content')
+<div class="all_index">
+    <div class-"text-center" style="padding:30px 0;">
+        <img src="{{url('/image/logo_black.png')}}" style="max-width:400px; width:80%; margin:0 auto; display:block;">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{ url('/product') }}">
+                <div class="content-inner">
+                    <div class="image" style="background:url('/image/product.jpg') center / cover;"></div>
+                    <div class="info">
+                        <p class="title">商品一覧</p>
+                        <p>商品の一覧を表示します</p>
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    REST API CHECK
-                </div>
-
-                <div class="links">
-                    <a href="{{ url('/product') }}">Product</a>
-                    <a href="{{ url('/shop') }}">Shop</a>
-                    <a href="{{ url('/api/products') }}">PRODUCT API</a>
-                    <a href="{{ url('/api/shops') }}">SHOP API</a>
-                    <a href="{{ url('/api/stocks') }}">STOCK API</a>
-                    <a href="{{ url('/api/shows') }}">SHOW API</a>
-                </div>
-            </div>
+            </a>
         </div>
-    </body>
-</html>
+        <div class="col-md-6">
+            <a href="{{ url('/shop') }}">
+                <div class="content-inner">
+                    <div class="image" style="background:url('/image/shop.jpg') center / cover;"></div>
+                    <div class="info">
+                        <p class="title">店舗一覧</p>
+                        <p>店舗の一覧を表示します</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url('/api/products') }}">PRODUCT API</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url('/api/shops') }}">SHOP API</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url('/api/stocks') }}">STOCK API</a>
+        </div>
+    </div>
+
+
+</div>
+@endsection

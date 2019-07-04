@@ -19,7 +19,7 @@
         <span class="error">{{ $errors->first('place') }}</span>
         @endif
         <input type="text" name="place" placeholder="住所" value="{{ old('place') }}">
-        <input type="submit" value="送信">
+        <input class="submit" type="submit" value="店舗を登録する">
     </form>
 </div>
 @endsection

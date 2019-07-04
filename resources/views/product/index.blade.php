@@ -14,12 +14,12 @@
         <form method="POST" action="{{ url('/product/search') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            <p>商品名</p>
+            <p>キーワード検索</p>
             @if($errors->has('name'))
             <span class="error">{{ $errors->first('name') }}</span>
             @endif
             <input type="text" name="name" placeholder="商品名" value="{{ old('name') }}">
-            <input type="submit" value="キーワード検索">
+            <input class="submit" type="submit" value="キーワード検索">
         </form>
     </div>
     @endif

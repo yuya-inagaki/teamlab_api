@@ -24,12 +24,12 @@
         <span class="error">{{ $errors->first('price') }}</span>
         @endif
         <input type="number" name="price" placeholder="100" value="{{ old('price') }}">
-        <p>画像</p>
+        <p>画像(最大3MB)</p>
         @if($errors->has('image'))
         <span class="error">{{ $errors->first('image') }}</span>
         @endif
         <input type="file" name="image">
-        <input type="submit" value="送信">
+        <input class="submit" type="submit" value="商品を登録する">
     </form>
 </div>
 @endsection

@@ -19,7 +19,7 @@
         @endif
         <input type="text" name="place" value="{{ $shop->place }}">
 
-        <input type="submit" value="送信">
+        <input class="submit" type="submit" value="店舗情報を修正する">
     </form>
 </div>
 @endsection

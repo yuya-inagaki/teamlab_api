@@ -23,12 +23,14 @@
         <span class="error">{{ $errors->first('price') }}</span>
         @endif
         <input type="number" name="price" value="{{ $product->price }}">
-        <p>画像</p>
+        <p>画像(最大3MB)</p>
         @if($errors->has('image'))
         <span class="error">{{ $errors->first('image') }}</span>
         @endif
-        <img src="{{ $product->image }}" width="100px"><input type="file" name="image">
-        <input type="submit" value="送信">
+        <img src="{{ $product->image }}" width="200px">
+        <p style="font-size:10px; margin:0;">*画像を変更するには新しい画像を選択して下さい、変更の必要がない場合はそのままで問題ありません</p>
+        <input type="file" name="image">
+        <input class="submit" type="submit" value="修正する">
     </form>
 </div>
 @endsection
