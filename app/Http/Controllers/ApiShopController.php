@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Shop; //Shopモデルを使用
+use App\Stock; //Stockモデルを使用
 use Storage; //ストレージ処理（削除時）に使用
 
 class ApiShopController extends Controller

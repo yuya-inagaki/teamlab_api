@@ -10,6 +10,7 @@
             <div><h1>{{ $shop->name }}</h1></div>
             <p>場所：{{ $shop->place }}</p>
             <a class="btn-link" href="{{ url('/shop') }}/{{ $shop->id }}/edit"><i class="far fa-edit"></i> 店舗情報編集</a>
+            <a class="btn-link" href="{{ url('/shop') }}/{{ $shop->id }}/destroy"><i class="far fa-edit"></i> 店舗削除</a>
         </div>
     </div><!-- sec1 -->
 

@@ -37,7 +37,7 @@ Route::get('shop/create', function () {
 Route::get('shop/{id}', 'ShopController@show');
 Route::get('shop/{id}/edit', 'ShopController@edit');
 Route::post('shop/{id}/update/', 'ShopController@update');
-Route::post('shop/{id}/destroy/', 'ShopController@destroy');
+Route::get('shop/{id}/destroy/', 'ShopController@destroy');
 
 // APIのルーティング
 Route::resource('api/products', 'ApiProductController');
