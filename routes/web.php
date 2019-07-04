@@ -29,6 +29,7 @@ Route::get('product/{product_id}/stock/{shop_id}', 'ProductController@stock_oper
 Route::get('product/shop', 'ProductController@show_shop');
 Route::get('product/{id}', 'ProductController@show');
 Route::get('product', 'ProductController@index');
+Route::post('product/search', 'ProductController@search');
 
 // Shop
 Route::get('shop', 'ShopController@index');

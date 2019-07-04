@@ -4,12 +4,14 @@
 
 @section('content')
 <div class="product_show">
-    <div class="image" style="background:url('{{ $product->image }}') center / cover ;"></div>
-    <p>{{ $product->name }}</p>
-    <p>{{ $product->price }}円</p>
-    <p>{{ $product->description }}</p>
 
-    <h2>取扱店舗一覧</h2>
+    <p class="name">{{ $product->name }}</p>
+    <div class="image" style="background:url('{{ $product->image }}') center / cover ;"></div>
+    <p class="price">￥<?php echo number_format($product->price); ?></p>
+    <p>{{ $product->description }}</p>
+    <a class="btn-link" href="{{url('/product')}}/{{$product->id}}/edit"><i class="far fa-edit"></i> 編集する</a>
+    <a class="btn-link" href="{{url('/product')}}/{{$product->id}}/destroy"><i class="fas fa-minus"></i> 削除する</a>
+    <div><h2>取扱店舗一覧</h2></div>
     @if( $shops != 'none' )
         <table class="shoplist">
             <tr>

@@ -12,7 +12,16 @@ class ProductController extends Controller
     public function index(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products";
         $products = json_decode(file_get_contents($url));
-        return view('product.index', ['products' => $products]);
+        return view('product.index', ['products' => $products, 'search' => false]);
+    }
+
+    public function search(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+        ]);
+        $url = "https://app.y-canvas.com/teamlab_api/api/products?name=".urlencode($request->name);
+        $products = json_decode(file_get_contents($url));
+        return view('product.index', ['products' => $products, 'search' => $request->name]);
     }
 
     public function show(Request $request){
