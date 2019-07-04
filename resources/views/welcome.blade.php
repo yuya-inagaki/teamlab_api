@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <a href="{{ url('/product') }}">
                 <div class="content-inner">
-                    <div class="image" style="background:url('/image/product.jpg') center / cover;"></div>
+                    <div class="image" style="background:url('<?php echo url('/image/product.jpg'); ?>') center / cover;"></div>
                     <div class="info">
                         <p class="title">商品一覧</p>
                         <p>商品の一覧を表示します</p>
@@ -22,7 +22,7 @@
         <div class="col-md-6">
             <a href="{{ url('/shop') }}">
                 <div class="content-inner">
-                    <div class="image" style="background:url('/image/shop.jpg') center / cover;"></div>
+                    <div class="image" style="background:url('<?php echo url('/image/shop.jpg'); ?>') center / cover;"></div>
                     <div class="info">
                         <p class="title">店舗一覧</p>
                         <p>店舗の一覧を表示します</p>
