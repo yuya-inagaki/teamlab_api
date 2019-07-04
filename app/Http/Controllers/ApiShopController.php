@@ -117,6 +117,18 @@ class ApiShopController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($shop = Shop::find($id)){
+            $stocks = Stock::where('shop_id',$id);
+            $stocks->delete();
+            $shop->delete();
+        }else{
+            $errors = [
+                'function' => 'delete',
+                'message' => 'no data',
+                'id' => $id
+            ];
+            $json =['error' =>$errors];
+            return $json;
+        }
     }
 }
