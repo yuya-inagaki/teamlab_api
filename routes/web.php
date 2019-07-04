@@ -24,9 +24,6 @@ Route::get('product/{id}/edit','ProductController@edit');
 Route::post('product', 'ProductController@store');
 Route::post('product/{id}/update', 'ProductController@update');
 Route::get('product/{product_id}/stock/{shop_id}', 'ProductController@stock_operation');
-
-// 一時的
-Route::get('product/shop', 'ProductController@show_shop');
 Route::get('product/{id}', 'ProductController@show');
 Route::get('product', 'ProductController@index');
 Route::post('product/search', 'ProductController@search');
@@ -40,6 +37,7 @@ Route::get('shop/create', function () {
 Route::get('shop/{id}', 'ShopController@show');
 Route::get('shop/{id}/edit', 'ShopController@edit');
 Route::post('shop/{id}/update/', 'ShopController@update');
+Route::post('shop/{id}/destroy/', 'ShopController@destroy');
 
 // APIのルーティング
 Route::resource('api/products', 'ApiProductController');

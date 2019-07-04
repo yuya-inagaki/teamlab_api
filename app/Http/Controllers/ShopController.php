@@ -125,4 +125,21 @@ class ShopController extends Controller
         return redirect('/shop');
     }
 
+    //データベースの削除
+    public function destroy(Request $request){
+        $url ="https://app.y-canvas.com/teamlab_api/api/shops/".$request->id;
+
+        $options = [
+            CURLOPT_CUSTOMREQUEST => 'DELETE',
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, $options);
+        $response = curl_exec($curl);
+        curl_close($curl);
+        return redirect('/shop');
+    }
+
 }
