@@ -25,7 +25,8 @@ class ApiProductController extends Controller
             $names = explode(',', $names);
             $products = Product::where(function ($query) use ($names) {
                 foreach ($names as $name) {
-                    $query->where('name', 'LIKE', "%{$name}%");
+                    $query->orWhere('name', 'LIKE', "%{$name}%")
+                        ->orWhere('description', 'LIKE', "%{$name}%");
                 }
             })->get();
             return $products->toArray();
