@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB; //DBクラスを追加
+use Validator;
 
 class ShopController extends Controller
 {
@@ -35,10 +36,28 @@ class ShopController extends Controller
 
     // 店舗の登録
     public function store(Request $request){
-        $this->validate($request,[
+        $rules = [
             'name' => 'required|min:3|max:50', //最低３文字,最大100文字
             'place' => 'required|max:300', //最大300文字
-        ]);
+        ];
+
+        $messages = [
+            'name.required' => '店舗名は必ず入力してください',
+            'name.min' => '店舗名は3文字以上で入力してください',
+            'name.max' => '店舗名は50文字以上で入力してください',
+            'place.required' => '店舗の場所は必ず入力してください',
+            'place.max' => '商品の場所は300文字以内で入力してください',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+            return redirect('/shop/create/')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         $CNL = "\r\n";//改行を変数化
         //POST送信先URL
         $url = 'https://app.y-canvas.com/teamlab_api/api/shops';
@@ -84,10 +103,27 @@ class ShopController extends Controller
 
     // 店舗情報のアップデート
     public function update(Request $request){
-        $this->validate($request,[
+        $rules = [
             'name' => 'required|min:3|max:50', //最低３文字,最大100文字
             'place' => 'required|max:300', //最大300文字
-        ]);
+        ];
+
+        $messages = [
+            'name.required' => '店舗名は必ず入力してください',
+            'name.min' => '店舗名は3文字以上で入力してください',
+            'name.max' => '店舗名は50文字以上で入力してください',
+            'place.required' => '店舗の場所は必ず入力してください',
+            'place.max' => '商品の場所は300文字以内で入力してください',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+            return redirect('/shop/create/')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $CNL = "\r\n";//改行を変数化
         //POST送信先URL
         $url = 'https://app.y-canvas.com/teamlab_api/api/shops/'.$request->id;

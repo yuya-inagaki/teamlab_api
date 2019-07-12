@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB; //DBクラスを追加
+use Validator;
 
 
 class ProductController extends Controller
@@ -109,12 +110,28 @@ class ProductController extends Controller
 
     //アップデート
     public function update(Request $request){
-        $this->validate($request,[
+        $rules = [
             'name' => 'required|min:3|max:100', //最低３文字,最大100文字
             'description' => 'required|max:500', //最大500文字
             'price' => 'required|digits_between:1,10', //1から10桁までの数字
-            'image' => 'image|max:3000', //3000kb(3MB)以下のファイル
-        ]);
+        ];
+
+        $messages = [
+            'name.required' => '商品名は必ず入力してください',
+            'name.min' => '商品名は3文字以上で入力してください',
+            'name.max' => '商品名は100文字以上で入力してください',
+            'description.required' => '商品の説明は必ず入力してください',
+            'description.max' => '商品の説明は500文字以内で入力してください',
+            'price.required' => '商品の価格は必ず入力してください',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+            return redirect('/product/'.$request->id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $CNL = "\r\n";//改行を変数化
 
@@ -181,16 +198,35 @@ class ProductController extends Controller
 
     }
 
+
     //データベースの登録
     public function store(Request $request){
 
-        $this->validate($request,[
+        $rules = [
             'name' => 'required|min:3|max:100', //最低３文字,最大100文字
             'description' => 'required|max:500', //最大500文字
             'price' => 'required|digits_between:1,10', //1から10桁までの数字
             'image' => 'required|image|max:3000', //3000kb(3MB)以下のファイル
-        ]);
+        ];
 
+        $messages = [
+            'name.required' => '商品名は必ず入力してください',
+            'name.min' => '商品名は3文字以上で入力してください',
+            'name.max' => '商品名は100文字以上で入力してください',
+            'description.required' => '商品の説明は必ず入力してください',
+            'description.max' => '商品の説明は500文字以内で入力してください',
+            'price.required' => '商品の価格は必ず入力してください',
+            'image.required' => '商品の画像は必ず選択してください',
+            'image.max' => '画像サイズが大きすぎます（3MB以内）',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+            return redirect('/product/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $CNL = "\r\n";//改行を変数化
 
@@ -254,6 +290,7 @@ class ProductController extends Controller
         return redirect('/product');
 
     }
+
 
     public function edit(Request $request){
         $url = "https://app.y-canvas.com/teamlab_api/api/products/".$request->id;
